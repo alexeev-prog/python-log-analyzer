@@ -4,14 +4,16 @@ from enum import Enum
 class ReportType(Enum):
     """Report Type Enum-class."""
 
-    AVERAGE_TIME = 0 # handler, total, average response time
-    TOTAL = 1 # handler, total
+    AVERAGE_TIME = 0  # handler, total, average response time
+    TOTAL = 1  # handler, total
 
 
 class ReportManager:
     """A Report Manager class."""
 
-    def __init__(self, report_type: ReportType, data: list[dict[str, any]], **filters) -> None:
+    def __init__(
+        self, report_type: ReportType, data: list[dict[str, any]], **filters
+    ) -> None:
         """
         Initialize a report manager.
 
