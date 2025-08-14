@@ -32,4 +32,4 @@ def test(session):
 @nox.session
 def lint(session):
     session.install("ruff")
-    session.run("ruff", "check", "src/pyminideprecator/")
+    session.run("ruff", "check", "loganalyzer")
