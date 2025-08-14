@@ -1,3 +1,9 @@
+commit 8d16a712070d2ebeddd3d60e003b9e855883b85b
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Fri Aug 15 01:51:37 2025 +0700
+
+    fix noxfile and readme
+
 commit 479cc4ba94b9a254ad80c5061a6e0734393b7b51
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Fri Aug 15 01:47:58 2025 +0700

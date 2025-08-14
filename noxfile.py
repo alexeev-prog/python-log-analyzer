@@ -1,7 +1,7 @@
 import nox
 
 # uv will handle any missing python versions
-python_versions = ["3.10", "3.11", "3.12", "3.13"]
+python_versions = ["3.11", "3.12", "3.13"]
 
 
 @nox.session(python=python_versions, venv_backend="uv")

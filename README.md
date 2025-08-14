@@ -37,6 +37,8 @@
 
 ![alt text](./assets/image.png)
 
+Версия python: >=3.11
+
 ## Установка
 
 ```bash
