@@ -5,12 +5,16 @@
   <p align="center">
     Настраиваемая быстрая утилита для анализа логов.
     <br />
-    <a href="https://alexeev-prog.github.io/python-log-analyzer/"><strong>Explore the docs »</strong></a>
+    <a href="https://alexeev-prog.github.io/python-log-analyzer/"><strong>Документация »</strong></a>
     <br />
     <br />
-    <a href="#-getting-started">Getting Started</a>
+    <a href="#установка">Установка</a>
     ·
-    <a href="#-usage-examples">Basic Usage</a>
+    <a href="#запуск">Запуск</a>
+    ·
+    <a href="#примеры-использования">Примеры использования</a>
+    ·
+    <a href="#архитектура">Архитектура</a>
     ·
     <a href="https://alexeev-prog.github.io/python-log-analyzer/">Documentation</a>
     ·
@@ -66,10 +70,10 @@ options:
                         provide a fileformat (log or json)
 ```
 
-## Пример использования
+## Примеры использования
 В качестве файлов используются примеры логов из репозитория, которые вы сами можете попробовать.
 
-## Стратегия "average"
+### Стратегия "average"
 Сортировка по URL (handler) с подсчетом общего количества (total) и среднего времени ответа (avg_response_time).
 
 ```bash
@@ -112,7 +116,7 @@ options:
  4  /api/challenges/...             1                0.056
 ```
 
-## Стратегия "user_agent"
+### Стратегия "user_agent"
 Выявление самых популярных User-Agent'ов.
 
 ```bash
