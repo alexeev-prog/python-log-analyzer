@@ -1,3 +1,9 @@
+commit 0f2b36ea03a1006791db08554f61cdc75919dfeb
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Thu Aug 14 22:11:07 2025 +0700
+
+    update pyproject
+
 commit 052af1ca1f012d99871cdd71f563849c9af27bf7
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Thu Aug 14 21:27:15 2025 +0700

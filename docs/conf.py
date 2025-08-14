@@ -4,16 +4,21 @@ import sys
 sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
-sys.path.insert(0, os.path.abspath("../src"))
-sys.path.insert(0, os.path.abspath("src"))
-sys.path.insert(0, os.path.abspath("../src/pyminideprecator"))
-sys.path.insert(0, os.path.abspath("src/pyminideprecator"))
+sys.path.insert(0, os.path.abspath("../loganalyzer"))
+sys.path.insert(0, os.path.abspath("loganalyzer"))
 
-project = "pyminideprecator"
+project = "ngpasm"
 author = "name"
-version = "0.2.1"
-release = "0.2"
+version = "0.1.0"
+release = "0.1"
 project_copyright = "2025, Alexeev Bronislaw"
+
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": True,
+    "special-members": "__init__",
+}
 
 extensions = [
     "sphinx.ext.autodoc",  # autodoc from docstrings
@@ -30,18 +35,11 @@ extensions = [
 pygments_style = "gruvbox-dark"
 
 html_theme = "furo"  # theme
+html_static_path = ["_static"]  # static dir
 todo_include_todos = True  # include todo in docs
 auto_doc_default_options = {"autosummary": True}
 
 autodoc_mock_imports = []
-autodoc_typehints = "description"
-autodoc_member_order = "bysource"
-autosummary_generate = True
-napoleon_include_init_with_doc = True
-
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-}
 
 
 def skip(app, what, name, obj, would_skip, options):

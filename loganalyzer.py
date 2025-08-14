@@ -1,4 +1,4 @@
-from loganalyzer.cli import main
+from loganalyzer import main
 
 if __name__ == "__main__":
     main()

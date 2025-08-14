@@ -1,79 +1,77 @@
-from loganalyzer.reports import ReportManager, ReportType
+import pytest
 
-EXAMPLE_DATA = [
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.024,
-        "http_user_agent": "...",
-    },
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.02,
-        "http_user_agent": "...",
-    },
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.024,
-        "http_user_agent": "...",
-    },
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 301,
-        "url": "/api/homeworks/...",
-        "request_method": "GET",
-        "response_time": 0.076,
-        "http_user_agent": "...",
-    },
-]
-
-EXAMPLE_DATA_FILTERED = [
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.024,
-        "http_user_agent": "...",
-    },
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.02,
-        "http_user_agent": "...",
-    },
-    {
-        "@timestamp": "2025-06-22T13:57:32+00:00",
-        "status": 200,
-        "url": "/api/context/...",
-        "request_method": "GET",
-        "response_time": 0.024,
-        "http_user_agent": "...",
-    },
-]
+from loganalyzer.reports import (
+    AverageTimeReport,
+    ReportManager,
+    ReportStrategy,
+    UserAgentReport,
+)
 
 
-def test_report_manager_init():
-    report_man = ReportManager(ReportType.AVERAGE_TIME, EXAMPLE_DATA, status=200)
+@pytest.fixture
+def sample_data():
+    return [
+        {"url": "/api/test1", "response_time": 0.1, "http_user_agent": "Agent1"},
+        {"url": "/api/test1", "response_time": 0.2, "http_user_agent": "Agent1"},
+        {"url": "/api/test2", "response_time": 0.3, "http_user_agent": "Agent2"},
+        {"url": "/api/test2", "response_time": 0.4, "http_user_agent": "Agent2"},
+        {"url": "/api/test2", "response_time": 0.5, "http_user_agent": "Agent2"},
+    ]
 
-    assert report_man.data == EXAMPLE_DATA
-    report_man.set_data([])
-    assert report_man.data == []
-    report_man.set_data(EXAMPLE_DATA)
-    assert report_man.data == EXAMPLE_DATA
+
+def test_report_strategy_abstract():
+    with pytest.raises(TypeError):
+        ReportStrategy().generate_report([])
 
 
-def test_report_manager_filtering():
-    report_man = ReportManager(ReportType.AVERAGE_TIME, EXAMPLE_DATA, status=200)
+def test_average_time_report(sample_data):
+    report = AverageTimeReport()
+    result = report.generate_report(sample_data)
 
-    assert report_man._filter_data() == EXAMPLE_DATA_FILTERED
+    assert len(result) == 2
+    assert result[0]["handler"] == "/api/test2"
+    assert result[0]["total"] == 3
+    assert result[0]["avg_response_time"] == 0.4
+
+    assert result[1]["handler"] == "/api/test1"
+    assert result[1]["total"] == 2
+    assert result[1]["avg_response_time"] == 0.15
+
+
+def test_user_agent_report(sample_data):
+    report = UserAgentReport()
+    result = report.generate_report(sample_data)
+
+    assert len(result) == 2
+    assert result[0]["user_agent"] == "Agent2"
+    assert result[0]["total"] == 3
+    assert result[1]["user_agent"] == "Agent1"
+    assert result[1]["total"] == 2
+
+
+def test_report_manager_no_filters(sample_data):
+    strategy = AverageTimeReport
+    manager = ReportManager(strategy, sample_data)
+    result = manager.generate()
+    assert len(result) == 2
+
+
+def test_report_manager_with_filter(sample_data):
+    def test_filter(item):
+        return item["url"] == "/api/test1"
+
+    strategy = AverageTimeReport
+    manager = ReportManager(strategy, sample_data, filters=[test_filter])
+    result = manager.generate()
+    assert len(result) == 1
+    assert result[0]["handler"] == "/api/test1"
+
+
+def test_report_manager_property(sample_data):
+    strategy = AverageTimeReport()
+    manager = ReportManager(strategy, sample_data)
+    assert manager.data == sample_data
+
+    new_data = [{"url": "/new", "response_time": 1.0}]
+    manager.set_data(new_data)
+    assert manager.data == new_data
