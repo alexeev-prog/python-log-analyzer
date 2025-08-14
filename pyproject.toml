@@ -81,3 +81,7 @@ ignore = [
   "TRY003",  # long exception messages from `tryceratops`
 ]
 
+
+
+ [tool.setuptools]
+ packages = ["loganalyzer"]

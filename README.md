@@ -1,5 +1,35 @@
 # python-log-analyzer
-Настраиваемая быстрая утилита для анализа логов.
+<a id="readme-top"></a>
+
+<div align="center">
+  <p align="center">
+    Настраиваемая быстрая утилита для анализа логов.
+    <br />
+    <a href="https://alexeev-prog.github.io/python-log-analyzer/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="#-getting-started">Getting Started</a>
+    ·
+    <a href="#-usage-examples">Basic Usage</a>
+    ·
+    <a href="https://alexeev-prog.github.io/python-log-analyzer/">Documentation</a>
+    ·
+    <a href="https://github.com/alexeev-prog/python-log-analyzer/blob/main/LICENSE">License</a>
+  </p>
+</div>
+<br>
+<p align="center">
+    <img src="https://img.shields.io/github/languages/top/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img src="https://img.shields.io/github/languages/count/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img src="https://img.shields.io/github/license/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img src="https://img.shields.io/github/stars/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img src="https://img.shields.io/github/issues/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img src="https://img.shields.io/github/last-commit/alexeev-prog/python-log-analyzer?style=for-the-badge">
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/alexeev-prog/python-log-analyzer?style=for-the-badge">
+</p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/alexeev-prog/python-log-analyzer/refs/heads/main/docs/pallet-0.png">
+</p>
 
 ![alt text](./assets/image.png)
 
